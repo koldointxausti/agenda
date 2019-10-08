@@ -19,3 +19,7 @@
 	text-transform: uppercase;
 	letter-spacing: 5px;
 }
+.error{
+	color:red;
+	font-size:12px;
+}
