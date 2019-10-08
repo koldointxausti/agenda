@@ -34,7 +34,10 @@ session_start();
 	<h3>Contactos</h3>
 	<div id="agenda">
 		<?php
-			if(!empty($_POST['submit'])){
+			// si ya hay algún elemento en la agenda
+			if(sizeof($_SESSION['agenda'])!=0){
+
+				// si los campos del nombre y el email están ambos rellenos
 				if(!empty($_POST['nombre']) && !empty($_POST['email'])){
 
 					// comprueba si el email y el nombre son válidos, y si lo son los añade a la sesión
@@ -42,9 +45,12 @@ session_start();
 					if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && preg_match('/^[a-z]+/i', $_POST['nombre']))
 						$_SESSION['agenda'][$_POST['nombre']] = $_POST['email'];
 
+				// si el campo nombre está relleno, pero el del email no, elimina ese contacto de la agenda
 				}elseif(empty($_POST['email']) && !empty($_POST['nombre'])){
 					unset($_SESSION['agenda'][$_POST['nombre']]);
 				}
+
+				// muestra los datos de la agenda
 				foreach($_SESSION['agenda'] as $nombre => $email)
 					echo '<div class="contacto"><span class="name">'.$nombre.'</span><span>'.$email.'</span></div>';	
 			}else
