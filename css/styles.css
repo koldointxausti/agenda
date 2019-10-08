@@ -1,0 +1,21 @@
+#agenda{
+	margin-top: 5%;
+	display: grid;
+	grid-template-columns: 25% 25% 25% 25%;
+}
+.contacto{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 1px 1px 7px lightgray;
+	max-width: 70%;
+	padding: 10% 5%;
+	margin: 1% 0;
+}
+.name{
+	font-weight: bold;
+	padding-bottom: 5%;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
