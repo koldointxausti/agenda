@@ -15,12 +15,15 @@ session_start();
 		<input type="hidden" name="user" value=<?php echo $_POST['user'] ?>>
 		<!-- Los input también hacen una comprobación. El nombre comprueba usando pattern, para solo aceptar letras, y el email se comprueba si es válido siendo un input de tipo email. De todas formas, también lo he checkeado con PHP, y he añadido campos para mostrar los errores  -->
 
-		<input type="text" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]+" value=<?php
+		<input type="text" name="nombre" placeholder="Nombre" pattern="[a-zA-Z]+" required value=<?php
 			// si se ha envíado el formulario, el valor del nombre en el formulario será el que se ha enviado antes
 			if(!empty($_POST['submit'])) echo $_POST['nombre'];
 		?>>
 		<!-- Campo error nombre -->
-		<span class="error"><?php if(!empty($_POST['nombre']) && !preg_match('/^[a-z]+/i', $_POST['nombre'])) echo 'Nombre incorrecto, no debe tener números ni símbolos'; ?></span>
+		<span class="error"><?php 
+			if(empty($_POST['nombre'])) echo 'Debe rellenar este campo';
+			elseif(!empty($_POST['nombre']) && !preg_match('/^[a-z]+/i', $_POST['nombre'])) echo 'Nombre incorrecto, no debe tener números ni símbolos';
+		?></span>
 
 		<input type="email" name="email" placeholder="Correo electrónico" value=<?php
 			// si se ha envíado el formulario y tenía email, el valor del email en el formulario será el que se ha enviado antes
