@@ -37,8 +37,8 @@ session_start();
 	<h3>Contactos</h3>
 	<div id="agenda">
 		<?php
-			// si ya hay algún elemento en la agenda
-			if(sizeof($_SESSION['agenda'])!=0){
+			// si se ha entregado el formulario
+			if(!empty($_POST['submit'])){
 
 				// si los campos del nombre y el email están ambos rellenos
 				if(!empty($_POST['nombre']) && !empty($_POST['email'])){
